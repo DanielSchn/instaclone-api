@@ -1,0 +1,13 @@
+<h1>TEST</h1>
+
+<ul>
+    {% for user in object_list %} 
+        <li>{{ user.username }}</li>
+    {% empty %}
+        <li>No articles yet!</li>
+    {% endfor %}
+</ul>
+
+<h1>{{ object.username }}</h1>
+<h2>{{ object.email_address }}</h2>
+<img src="{{ object.profile_image.url }}" alt="">
