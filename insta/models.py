@@ -8,6 +8,9 @@ class User(models.Model):
 
     def __str__(self):
         return self.username
+    
+    class Meta:
+        verbose_name_plural = 'User'
 
 class Post(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -18,6 +21,10 @@ class Post(models.Model):
 
     def __str__(self):
         return f"{self.user.username}'s Post at {self.location}"
+    
+    class Meta:
+        ordering = ['created_at']
+        verbose_name_plural = 'Post'
         
 
 class Comment(models.Model):
@@ -29,6 +36,10 @@ class Comment(models.Model):
     def __str__(self):
         return f"{self.user.username}'s comment on {self.post}"
     
+    class Meta:
+        ordering = ['created_at']
+        verbose_name_plural = 'Comment'
+    
 class Like(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='likes')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -36,3 +47,7 @@ class Like(models.Model):
 
     def __str__(self):
         return f"{self.user.username} liked {self.post}"
+    
+    class Meta:
+        ordering = ['created_at']
+        verbose_name_plural = 'Like'
